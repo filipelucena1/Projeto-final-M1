@@ -1,0 +1,13 @@
+body, main, header, footer, nav, aside, div, section, p, h1, h2, h3, h4, h5, figure, img, li, article{
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 100%;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
