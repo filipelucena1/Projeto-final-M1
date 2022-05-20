@@ -1,5 +1,8 @@
 //Selecionando tags do html
+navegacao    = document.getElementById("barraDeNavegacao");
 vitrine      = document.getElementById("vitrine");
+search       = document.getElementById("search");
+searchInput  = document.getElementById("searchInput");
 shoppingCart = document.getElementById("shoppingCart");
 section      = document.querySelector("section");
 
@@ -50,17 +53,12 @@ function createCard(obj){
 }
 
 //Percorrendo o vetor
-function readDataBase(){
+function readDataBase(element){
 
     
     for (let i = 0; i < data.length; i++){
 
         let obj = data[i];
-
-        const card = createCard(obj);
-
-        //inserindo card do produto no html
-        vitrine.appendChild(card);
 
         dataCart.push({
             id: obj.id,
@@ -69,12 +67,65 @@ function readDataBase(){
             value: obj.value,
             remove: "Remover produto"
         });
+
+        if (element === 0 || element.innerText === "Todos"){
+        
+            const card = createCard(obj);
+
+            //inserindo card do produto no html
+            vitrine.appendChild(card);
+        }
+        else if (element.innerText === "Básicas" && (element.innerText === obj.tag || obj.tag === "Todos")){
+            
+            const card = createCard(obj);
+
+            //inserindo card do produto no html
+            vitrine.appendChild(card);
+        }
+        else if (element.innerText === "Casuais" && (element.innerText === obj.tag || obj.tag === "Todos")){
+        
+            const card = createCard(obj);
+
+            //inserindo card do produto no html
+            vitrine.appendChild(card);
+        }
+        else if (element.innerText === "Frases" && (element.innerText === obj.tag || obj.tag === "Todos")){
+        
+            const card = createCard(obj);
+
+            //inserindo card do produto no html
+            vitrine.appendChild(card);
+        }
+        else if (element.innerText === "Polos" && (element.innerText === obj.tag || obj.tag === "Todos")){
+        
+            const card = createCard(obj);
+
+            //inserindo card do produto no html
+            vitrine.appendChild(card);
+        }
+        else if (element.innerText === "Regatas" && (element.innerText === obj.tag || obj.tag === "Todos")){
+        
+            const card = createCard(obj);
+
+            //inserindo card do produto no html
+            vitrine.appendChild(card);
+        }
+        else if(typeof(element) === "string"){
+
+            if (obj.nameItem.toLowerCase().includes(element.toLowerCase())){
+
+                const card = createCard(obj);
+    
+                //inserindo card do produto no html
+                vitrine.appendChild(card);
+            }
+        }
     }
 
 }
 
 //CHAMANDO A FUÇÃO PARA CARREGAR OS DADOS NO HTML
-readDataBase()
+readDataBase(0)
 
 //Criando card para produto adicionado ao carrinho
 function createCartCard(item){
@@ -138,6 +189,10 @@ function cartAdd(element){
             section.appendChild(cartCard);
         }
     }
+    else{
+
+        filtrarPorTag(element);
+    }
 }
 
 //INTERCEPTANDO EVENTO DE CLIQUE "ADICIONAR CARRINHO"
@@ -150,7 +205,7 @@ function cartRemove(element){
         soma -= data[(element.target.id)*(-1) - 1].value;
         count--;
 
-        if (soma === 0){
+        if (soma <= 0){
 
             section.innerHTML = "<h2>Carrinho Vazio</h2><p>Adicione itens</p>";
             shoppingCart.removeChild(resultContainer);
@@ -226,15 +281,76 @@ function cardReload(element){
 
     if (element.target.id.slice(0,4) === "card"){
 
-        console.log("ok")
-
         let index = element.target.id.slice(4)-1;
         
         element.target.innerHTML = `<figure><img class="bigImg" src=${data[index].bigImg} alt="bigImg"></figure>`;
     }
 }
 
+//INTERCEPTANDO EVENTOS DE ENTRADA E SAÍDA DO MOUSE NOS CARDS:
+
 vitrine.addEventListener("mouseover", cardInsert);
 
 vitrine.addEventListener("mouseout", cardReload);
 
+
+/*------------------------------------------------------------------*/
+
+
+function filtrarPorTag(element){
+
+    if (element.target.innerText === "Todos"){
+
+        vitrine.innerHTML = "";
+        
+        readDataBase(element.target);
+    }
+    else if (element.target.innerText === "Básicas"){
+
+        vitrine.innerHTML = "";
+
+        readDataBase(element.target);
+    }
+    else if (element.target.innerText === "Casuais"){
+
+        vitrine.innerHTML = "";
+
+        readDataBase(element.target);
+    }
+    else if (element.target.innerText === "Frases"){
+
+        vitrine.innerHTML = "";
+
+        readDataBase(element.target);
+    }
+    else if (element.target.innerText === "Polos"){
+
+        vitrine.innerHTML = "";
+
+        readDataBase(element.target);
+    }
+    else if (element.target.innerText === "Regatas"){
+
+        vitrine.innerHTML = "";
+
+        readDataBase(element.target);
+    }
+}
+
+//INTERCEPTANDO EVENTO DE CLICK NAS TAGS
+navegacao.addEventListener("click", filtrarPorTag);
+
+
+function pesquisar(element){
+
+    if (element.target.innerText === "Pesquisar" && searchInput.value.trim() !== ""){
+
+        vitrine.innerHTML = "";
+
+        readDataBase(searchInput.value);
+    }
+}
+
+
+//INTERCEPTANDO EVENTO DE CLIQUE NO BOTÃO DE PESQUISA
+search.addEventListener("click", pesquisar);

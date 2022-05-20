@@ -10,7 +10,7 @@ const data = [
         "Camiseta 100% algodão na cor azul claro e estampada com três lupas.",
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Casuais"]
+      tag: "Casuais"
     },
     {
       id: 2,
@@ -21,40 +21,40 @@ const data = [
         "Camiseta 100% algodão na cor vinho e estampada com três lupas.",
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Casuais"]
+      tag: "Casuais"
     },
     {
       id: 3,
       bigImg: "./img/87-atletic-dlupas-278x398.png",
       smallImg: "./img/87-atletic-dlupas-transparente-200x140.png",
-      nameItem: "87 Athletic D'LUPAS",
+      nameItem: "87 Athletic",
       description:
         "Camiseta 100% algodão na cor cinza, com malha leve e estampa voltada para esportes.",
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Casuais"]
+      tag: "Casuais"
     },
     {
       id: 4,
       bigImg: "./img/as-palavras-ensinam-amarelo-278x398.png",
       smallImg: "./img/as-palavras-ensinam-amarelo-transparente-200x140.png",
-      nameItem: "D'LUPAS na Verdade",
+      nameItem: "Palavras Ensinam",
       description:
         `A linha "D'LUPAS na Verdade" é composta por camisetas 100% algodão e traz algumas verdades como frases em suas estampas. Ditado popular.`,
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Frases"]
+      tag: "Frases"
     },
     {
       id: 5,
       bigImg: "./img/as-palavras-ensinam-azul-claro-278x398.png",
       smallImg: "./img/as-palavras-ensinam-azul-claro-transparente-200x140.png",
-      nameItem: "D'LUPAS na Verdade",
+      nameItem: "Palavras Ensinam",
       description:
         `A linha "D'LUPAS na Verdade" é composta por camisetas 100% algodão e traz algumas verdades como frases em suas estampas. Ditado popular.`,
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Frases"]
+      tag: "Frases"
     },
     {
       id: 6,
@@ -65,7 +65,7 @@ const data = [
         "A linha básica D'LUPAS apresenta camisetas 100% algodão em um estilo casual perfeito para o dia-a-dia.",
       value: 49.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Básicas"]
+      tag: "Básicas"
     },
     {
       id: 7,
@@ -76,7 +76,7 @@ const data = [
         "A linha básica D'LUPAS apresenta camisetas 100% algodão em um estilo casual perfeito para o dia-a-dia.",
       value: 44.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Regatas"]
+      tag: "Regatas"
     },
     {
       id: 8,
@@ -87,7 +87,7 @@ const data = [
         "A linha básica D'LUPAS apresenta camisetas 100% algodão em um estilo casual perfeito para o dia-a-dia.",
       value: 49.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Básicas"]
+      tag: "Básicas"
     },
     {
       id: 9,
@@ -98,7 +98,7 @@ const data = [
         "A linha básica D'LUPAS apresenta camisetas 100% algodão em um estilo casual perfeito para o dia-a-dia.",
       value: 49.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Básicas"]
+      tag: "Básicas"
     },
     {
       id: 10,
@@ -109,18 +109,18 @@ const data = [
         "Camisetas 100% algodão na cor verde, estampada com as consoantes em um design especialmente preparado.",
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Casuais"]
+      tag: "Casuais"
     },
     {
       id: 11,
       bigImg: "./img/guitarra-azul-escuro-278x398.png",
       smallImg: "./img/guitarra-azul-escuro-transparente-200x140.png",
-      nameItem: "D'LUPAS na Verdade",
+      nameItem: "Poder do Amor",
       description:
         `A linha "D'LUPAS na Verdade" é composta por camisetas 100% algodão e traz algumas verdades como frases em suas estampas. Frase do guitarrista Jimmy Hendrix.`,
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Frases"]
+      tag: "Frases"
     },
     {
       id: 12,
@@ -131,7 +131,7 @@ const data = [
         "Camiseta 100% algodão na cor azul escuro e estampa personalizada com um leão.",
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Casuais"]
+      tag: "Casuais"
     },
     {
       id: 13,
@@ -142,7 +142,7 @@ const data = [
         "Regata 100% algodão na cor preto e estampa personalizada com um leão.",
       value: 49.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Regatas"]
+      tag: "Regatas"
     },
     {
       id: 14,
@@ -153,7 +153,7 @@ const data = [
         "A linha long contém camisetas 100% algodão com um design moderno.",
       value: 64.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Casuais"]
+      tag: "Casuais"
     },
     {
       id: 15,
@@ -164,7 +164,7 @@ const data = [
         'Regatas 100% algodão na cor azul, com malha leve e estampada com a palavra "Movimento" em diversas línguas.',
       value: 49.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Regatas"]
+      tag: "Regatas"
     },
     {
       id: 16,
@@ -175,7 +175,7 @@ const data = [
         "Linha de Camisas 100% algodão em um estilo mais refinado, acrescentando um tom de seriedade ao look.",
       value: 69.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Polos"]
+      tag: "Polos"
     },
     {
       id: 17,
@@ -186,7 +186,7 @@ const data = [
         "Linha de Camisas 100% algodão em um estilo mais refinado, acrescentando um tom de seriedade ao look.",
       value: 69.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Polos"]
+      tag: "Polos"
     },
     {
       id: 18,
@@ -197,18 +197,18 @@ const data = [
         "Linha de Camisas 100% algodão em um estilo mais refinado, acrescentando um tom de seriedade ao look.",
       value: 69.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Polos"]
+      tag: "Polos"
     },
     {
       id: 19,
       bigImg: "./img/superacao-rosa-278x398.png",
       smallImg: "./img/superacao-rosa-transparente-200x140.png",
-      nameItem: "D'LUPAS na Verdade",
+      nameItem: "SuperAção",
       description:
         `A linha "D'LUPAS na Verdade" é composta por camisetas 100% algodão e traz algumas verdades como frases em suas estampas.`,
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Frases"]
+      tag: "Frases"
     },
     {
       id: 20,
@@ -219,7 +219,7 @@ const data = [
       `A linha "D'LUPAS na Verdade" é composta por camisetas 100% algodão e traz algumas verdades como frases em suas estampas.`,
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Frases"]
+      tag: "Frases"
     },
     {
       id: 21,
@@ -230,7 +230,7 @@ const data = [
       `A linha "D'LUPAS na Verdade" é composta por camisetas 100% algodão e traz algumas verdades como frases em suas estampas.`,
       value: 58.90,
       addCart: "Adicionar ao carrinho",
-      tag: ["Frases"]
+      tag: "Frases"
     },
     {
       id: 22,
@@ -241,6 +241,6 @@ const data = [
         "Embalagem de presente personalizada e cuidadozamente fabricada para um momento especial.",
       value: 5,
       addCart: "Adicionar ao carrinho",
-      tag: ["Todos"]
+      tag: "Todos"
     },
   ];
