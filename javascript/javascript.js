@@ -1,5 +1,6 @@
 //Selecionando tags do html
 navegacao    = document.getElementById("barraDeNavegacao");
+body         = document.querySelector("body");
 vitrine      = document.getElementById("vitrine");
 search       = document.getElementById("search");
 searchInput  = document.getElementById("searchInput");
@@ -65,7 +66,8 @@ function readDataBase(element){
             name: obj.nameItem,
             smallImg: obj.smallImg,
             value: obj.value,
-            remove: "Remover produto"
+            remove: "Remover produto",
+            count: 0
         });
 
         if (element === 0 || element.innerText === "Todos"){
@@ -137,6 +139,10 @@ function createCartCard(item){
     const cartCardTitle     = document.createElement("h4");
     const cartCardPrice     = document.createElement("h5");
     const remover           = document.createElement("p");
+    const addOrRemove       = document.createElement("section");
+    const productAdd        = document.createElement("p");
+    const productCount      = document.createElement("p");
+    const productRemove     = document.createElement("p");
 
     cartCardContainer.classList.add("cartCard");
     cartCardImg.classList.add("cartCardFigure");
@@ -145,49 +151,77 @@ function createCartCard(item){
     cartCardTitle.classList.add("cartCardTitle");
     cartCardPrice.classList.add("cartCardPrice");
     remover.classList.add("remove");
+    addOrRemove.classList.add("addOrRemove");
+    productAdd.classList.add("productAdd");
+    productCount.classList.add("productCount");
+    productRemove.classList.add("productRemove");
 
-    remover.id = `${-item.id}`;
+    remover.id          = `${-item.id}`;
+    productCount.id     = `product${item.id}`;
+    productAdd.id       = `productAdd${item.id}`;
+    productRemove.id    = `productRemove${item.id}`;
 
     smallImg.src            = `${item.smallImg}`;
     cartCardTitle.innerText = `${item.name}`;
     cartCardPrice.innerText = `R$ ${item.value.toFixed(2)}`;
     remover.innerText       = `${item.remove}`;
+    productAdd.innerText    = `+`;
+    productCount.innerText  = `x1`;
+    productRemove.innerText = `-`;
 
+    addOrRemove.appendChild(productAdd);
+    addOrRemove.appendChild(productCount);
+    addOrRemove.appendChild(productRemove);
     cartCardText.appendChild(cartCardTitle);
     cartCardText.appendChild(cartCardPrice);
     cartCardText.appendChild(remover);
     cartCardImg.appendChild(smallImg);
     cartCardContainer.appendChild(cartCardImg);
     cartCardContainer.appendChild(cartCardText);
+    cartCardContainer.appendChild(addOrRemove);
 
     return cartCardContainer;
 }
 
 function cartAdd(element){
     
-    if (element.target.innerText === "Adicionar ao carrinho"){
-        
+    if (element.target.innerText === "Adicionar ao carrinho" || element.target.innerText === "+"){
+
         if (soma === 0){
             
             section.innerHTML = "";
             shoppingCart.appendChild(resultContainer);
-            
         }
-        soma += data[element.target.id - 1].value;
-        count++;
-        
-        if (soma > 0){
-            
+        if (soma >= 0){
+
             section.style.height    = "360px";
             section.style.overflowY = "auto";
 
-            const cartCard = createCartCard(dataCart[element.target.id - 1]);
+            if (dataCart[(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id) - 1].count === 0){
+                
+                soma += data[(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id) - 1].value;
+                count++;
 
-            quantSection.innerHTML = `<h4>Quantidade:</h4><p>${count}</p>`;
-            totalSection.innerHTML = `<h4>Total:</h4><p>R$ ${soma.toFixed(2)}</p>`;
+                const cartCard = createCartCard(dataCart[(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id) - 1]);
+                
+                section.appendChild(cartCard);
 
-            section.appendChild(cartCard);
+                dataCart[(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id) - 1].count += 1;
+            }
+            else if(dataCart[(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id) - 1].count < 100){
+
+                soma += data[(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id) - 1].value;
+                count++;
+
+                const productCount = document.getElementById(`product${(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id)}`);
+                
+                dataCart[(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id) - 1].count += 1;
+
+                productCount.innerText = `x${dataCart[(element.target.id.slice(0,1) === "p" ? element.target.id.slice(10) : element.target.id) - 1].count}`;
+            }
         }
+        quantSection.innerHTML = `<h4>Quantidade:</h4><p>${count}</p>`;
+        totalSection.innerHTML = `<h4>Total:</h4><p>R$ ${soma.toFixed(2)}</p>`;   
     }
     else{
 
@@ -196,17 +230,42 @@ function cartAdd(element){
 }
 
 //INTERCEPTANDO EVENTO DE CLIQUE "ADICIONAR CARRINHO"
-vitrine.addEventListener("click", cartAdd);
+body.addEventListener("click", cartAdd);
 
 function cartRemove(element){
 
     if (element.target.innerText === "Remover produto"){
+
+        const productCount = document.getElementById(`product${-element.target.id}`);
         
-        soma -= data[(element.target.id)*(-1) - 1].value;
+        soma  -= (data[(-element.target.id) - 1].value * Number(productCount.innerText.slice(1)));
+        soma   = Math.round(Math.abs(soma*100))/100;
+        count -= Number(productCount.innerText.slice(1));
+
+        if (soma === 0){
+            
+            section.innerHTML = "<h2>Carrinho Vazio</h2><p>Adicione itens</p>";
+            shoppingCart.removeChild(resultContainer);
+            section.style.height    = "215px";
+            section.style.overflowY = "hidden"
+        }
+        else{
+
+            quantSection.innerHTML = `<h4>Quantidade:</h4><p>${count}<p>`;
+            totalSection.innerHTML = `<h4>Total:</h4><p>R$ ${soma.toFixed(2)}<p>`;
+        }
+        element.target.parentNode.parentNode.remove();
+
+        dataCart[-element.target.id - 1].count = 0;
+    }
+    else if(element.target.innerText === "-"){
+
+        soma -= data[element.target.id.slice(13) - 1].value;
+        soma  = Math.round(Math.abs(soma*100))/100;
         count--;
 
-        if (soma <= 0){
-
+        if (soma === 0){
+            
             section.innerHTML = "<h2>Carrinho Vazio</h2><p>Adicione itens</p>";
             shoppingCart.removeChild(resultContainer);
             section.style.height    = "215px";
@@ -215,10 +274,11 @@ function cartRemove(element){
         else{
 
             quantSection.innerHTML = `<h4>Quantidade:</h4><p>${count}<p>`;
-            totalSection.innerHTML = `<h4>Total:</h4><p>R$ ${soma.toFixed(2)}<p>`
-
-            element.target.parentNode.parentNode.remove();
+            totalSection.innerHTML = `<h4>Total:</h4><p>R$ ${soma.toFixed(2)}<p>`;
         }
+        dataCart[element.target.id.slice(13) - 1].count--;
+        const productCount = document.getElementById(`product${element.target.id.slice(13)}`);
+        productCount.innerText = `x${dataCart[element.target.id.slice(13) - 1].count}`;
     }
 }
 
@@ -238,7 +298,7 @@ function cardInsert(element){
         //recriando cards com descrição dos produtos
         const cardContainer = document.getElementById(`${element.target.parentNode.parentNode.id}`);
         const cardImg       = document.createElement("figure");
-        const smallImg           = document.createElement("img");
+        const smallImg      = document.createElement("img");
         const cardText      = document.createElement("main");
         const tag           = document.createElement("h5");
         const title         = document.createElement("h3");
